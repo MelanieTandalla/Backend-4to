@@ -80,7 +80,7 @@ private async paginateAndFilter(params: FilterProductDto){
         search = search.trim(),
         page = 0;
         where = [];
-       // where.push({name: ILike('%${seach}')})
+       where.push({tittleAt: ILike('%${seach}')})
 
 
     }
@@ -90,7 +90,7 @@ private async paginateAndFilter(params: FilterProductDto){
         take:limit,
         skip: PaginationDto.getOffset(limit, page),
     });
-    return 
+    return {pagination :{limit, totalItems: data[1]}, data: data[0]}
 
 }
 }
